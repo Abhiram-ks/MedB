@@ -1,14 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:medb/core/common/custom_googlefiled.dart';
 import 'package:medb/features/auth/presentation/widgets/register_widget/register_details_form.dart';
 
 import '../../../../../core/constants/constant.dart';
 import '../../../../../core/routes/routes.dart';
 
 class RegisterDetailsBody extends StatelessWidget {
-  const RegisterDetailsBody({super.key, required this.screenWidth});
+  const RegisterDetailsBody({super.key, required this.screenWidth, required this.screenHeight});
 
   final double screenWidth;
+  final double screenHeight;
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +21,7 @@ class RegisterDetailsBody extends StatelessWidget {
           keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
           physics: BouncingScrollPhysics(),
           child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: screenWidth * 0.04),
+            padding: EdgeInsets.symmetric(horizontal: screenWidth * 0.06),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -36,6 +38,8 @@ class RegisterDetailsBody extends StatelessWidget {
                 ),
                 ConstantWidgets.hight30(context),
                 RegisterDetailsForm(),
+                CustomGooglefiled.googleSignInModule(context: context, screenHeight: screenHeight, screenWidth: screenWidth),
+                ConstantWidgets.hight30(context),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [

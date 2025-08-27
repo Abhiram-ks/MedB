@@ -8,7 +8,7 @@ class CustomTextedit extends StatelessWidget {
   final String label;
   final IconData? prefixIcon;
   final TextEditingController controller;
-  final String? Function(String? value) validate;
+  final String? Function(String? value)? validate;
   final bool isPassword;
 
   const CustomTextedit({
@@ -17,7 +17,7 @@ class CustomTextedit extends StatelessWidget {
     this.hintText,
     this.prefixIcon,
     required this.controller,
-    required this.validate,
+    this.validate,
     this.isPassword = false,
   });
 

@@ -9,13 +9,14 @@ class LoginScreen extends StatelessWidget {
     return LayoutBuilder(
       builder: (context, constraints) {
         double screenWidth = constraints.maxWidth;
+        double screenHeight = constraints.maxHeight;
         return Scaffold(
           backgroundColor: const Color.fromARGB(255, 245, 245, 245),
           resizeToAvoidBottomInset: false,
           body: SafeArea(
             child: GestureDetector(  
                onTap: () => FocusScope.of(context).unfocus(),
-              child: LoginScreenBody(screenWidth: screenWidth))),
+              child: LoginScreenBody(screenWidth: screenWidth,screenHeight: screenHeight))),
         );
       },
     );

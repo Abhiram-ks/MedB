@@ -65,6 +65,7 @@ flutter:
   assets:
     - assets/medb_logo.png
     - assets/blur_circle.json
+    - assets/google_logo.png
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

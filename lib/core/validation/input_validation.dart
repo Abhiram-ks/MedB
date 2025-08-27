@@ -24,16 +24,16 @@ class ValidatorHelper {
     }
     return null;
   }
-
+  
   static String? nameValidation(String? name) {
     if (name == null || name.trim().isEmpty) {
       return 'Name is required';
     }
 
-    final regex = RegExp(r"^[A-Za-z]+( [A-Za-z]+)*$");
+   final regex = RegExp(r'^[A-Za-z]+$');
 
     if (!regex.hasMatch(name)) {
-      return 'Enter a valid name (only letters, single spaces allowed)';
+      return "Enter a valid name (letters only).";
     }
 
     return null; 
@@ -46,6 +46,20 @@ class ValidatorHelper {
     return 'enter valid phone number';
   }
   return null;
+  }
+
+  static String? validatePasswordMatch(String? password, String? confirmPassword) {
+   if (password == null  || password.isEmpty) {
+      return 'Create a new Password';
+   }
+    if (confirmPassword == null || confirmPassword.isEmpty) {
+      return 'Please fill the field';
+    }
+
+    if (password != confirmPassword) {
+      return 'Passwords do not match.';
+    }
+    return null;
   }
 
 }

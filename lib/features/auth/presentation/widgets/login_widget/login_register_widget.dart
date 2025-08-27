@@ -1,13 +1,16 @@
 
 import 'package:flutter/material.dart';
+import 'package:medb/core/common/custom_googlefiled.dart';
 import 'package:medb/core/routes/routes.dart';
 import '../../../../../core/constants/constant.dart';
 import '../../../../../core/themes/colors.dart';
 
 
 class RegistractionPart extends StatelessWidget {
+  final double screenWidth;
+  final double screenHeight;
   const RegistractionPart({
-    super.key,
+    super.key, required this.screenWidth, required this.screenHeight,
   });
 
   @override
@@ -53,6 +56,8 @@ class RegistractionPart extends StatelessWidget {
             ),
           ),
         ),
+        ConstantWidgets.hight20(context),
+        CustomGooglefiled.googleSignInModule(context: context, screenHeight:screenHeight,screenWidth: screenWidth),
         ConstantWidgets.hight20(context),
         Row(
           mainAxisAlignment: MainAxisAlignment.center,

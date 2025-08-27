@@ -9,11 +9,12 @@ import 'login_register_widget.dart';
 class LoginScreenBody extends StatelessWidget {
   const LoginScreenBody({
     super.key,
-    required this.screenWidth,
+    required this.screenWidth, required this.screenHeight,
     
   });
 
   final double screenWidth;
+  final double screenHeight;
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +31,7 @@ class LoginScreenBody extends StatelessWidget {
         ),
         Center(
           child: Container(
-            width: screenWidth * 0.86,
+            width: screenWidth * 0.87,
             padding: const EdgeInsets.all(24),
             decoration: BoxDecoration(
               color: AppPalette.whiteColor.withAlpha(
@@ -52,7 +53,7 @@ class LoginScreenBody extends StatelessWidget {
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   LoginCredentialPart(screenWidth: screenWidth),
-                  RegistractionPart(),
+                  RegistractionPart(screenHeight: screenHeight, screenWidth: screenWidth,),
                 ],
               ),
             ),
