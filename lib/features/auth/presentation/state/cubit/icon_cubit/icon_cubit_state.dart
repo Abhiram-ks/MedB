@@ -10,3 +10,8 @@ final class PasswordVisibilityUpdated extends IconCubitState {
 
   PasswordVisibilityUpdated(this.isVisible);
 }
+
+final class PhoneFiledColorUpdated extends IconCubitState {
+  final Color color;
+  PhoneFiledColorUpdated(this.color);
+}

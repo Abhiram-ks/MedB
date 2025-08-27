@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:medb/core/constants/constant.dart';
 import 'package:medb/features/auth/presentation/pages/login_screen/login_screen.dart';
+import 'package:medb/features/auth/presentation/pages/register_screen/register_details_screen.dart';
 
 import '../../features/auth/presentation/pages/splash_screen/splash_screen.dart';
 
 class AppRoutes {
   static const String splash = '/';
   static const String login = '/login_screen';
+  static const String register = '/register_screen';
 
 
   static Route<dynamic> generateRoute(RouteSettings settings) {
@@ -14,7 +16,9 @@ class AppRoutes {
       case splash:
         return MaterialPageRoute(builder: (_) => const SplashScreen());
       case login:
-        return MaterialPageRoute(builder: (_) => const LoginScreen());
+        return MaterialPageRoute(builder: (_) =>  LoginScreen());
+      case register:
+        return MaterialPageRoute(builder: (_) => const RegisterScreen());
 
       default:
         return MaterialPageRoute(
