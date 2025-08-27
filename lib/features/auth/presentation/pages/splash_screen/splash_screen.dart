@@ -1,40 +1,21 @@
 import 'package:flutter/material.dart';
+import 'package:medb/features/auth/presentation/widgets/splash_widget/splash_body_widget.dart';
 
 class SplashScreen extends StatelessWidget {
   const SplashScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Center(
-        child: Column(
-                   mainAxisSize: MainAxisSize.min,
-            children: [
-              // Title
-              Text(
-                'Page Not Found',
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  fontSize: 28,       
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        double screenHeight = constraints.maxHeight;
+        double screenWidth = constraints.maxWidth;
 
-              const SizedBox(height: 12),
-
-              Text(
-                'The page you were looking for could not be found. '
-                'It might have been removed, renamed, or does not exist.',
-                textAlign: TextAlign.center,
-                softWrap: true,
-                style: TextStyle(
-                  fontSize: 16,
-                  height: 1.4,
-                ),
-              ),
-          ],
-        ),
-      )
+        return Scaffold(
+          body: SplashScreenBody(screenWidth: screenWidth, screenHeight: screenHeight),
+        );
+      },
     );
   }
 }
+

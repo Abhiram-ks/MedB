@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class AppPalette  {
-  static const buttonColor = Color(0xFF7B3AED);
+  static const buttonColor = Color(0xFF894EEF);
   static const whiteColor  = Colors.white;
   static const blackColor  = Colors.black;
   static const greenColor  = Colors.green;
