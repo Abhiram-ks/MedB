@@ -6,6 +6,8 @@ import 'package:medb/features/auth/presentation/state/bloc/splash_bloc/splash_bl
 
 void splashStateHandle(BuildContext context, SplashBlocState state) {
   if (state is SplashBlocGoToLogin) {
-    Navigator.pushNamed(context, AppRoutes.login);
+    Navigator.pushReplacementNamed(context, AppRoutes.login);
+  }else if (state is SplashBlocGoToDashBord){
+    Navigator.pushReplacementNamed(context, AppRoutes.dashbord );
   }
 }

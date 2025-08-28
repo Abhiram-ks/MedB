@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:medb/core/routes/routes.dart';
 import 'package:medb/core/themes/colors.dart';
 import 'package:medb/features/auth/presentation/state/bloc/login_bloc/login_bloc_bloc.dart';
 import 'package:medb/features/auth/presentation/state/cubit/progresser_cubit/progresser_cubit_cubit.dart';
@@ -13,11 +14,7 @@ void loginStateHandle(BuildContext context, LoginBlocState state) {
     bottonProgress.startLoading();
   }else if(state is LoginBlocSuccess){
     bottonProgress.stopLoading();
-    CustomSnackBar.show(
-      context,
-      message: 'Successfully Login',
-      backgroundColor: AppPalette.greenColor,
-    );
+    Navigator.pushNamedAndRemoveUntil(context, AppRoutes.dashbord,(route) => false);
   }else if (state is LoginBlocFailure){
     bottonProgress.stopLoading();
     CustomSnackBar.show(

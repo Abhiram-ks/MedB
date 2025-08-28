@@ -73,7 +73,7 @@ class ApiService {
       ),
     );
   }
-
+   
   Future<LoginResponseModel> login(String email, String password) async {
     try {
       final response = await _dio.post(
@@ -83,6 +83,7 @@ class ApiService {
 
       if (response.statusCode == 200 && response.data != null) {
         final loginResponse = LoginResponseModel.fromJson(response.data);
+
         await AuthService.storeLoginData(loginResponse);
         return loginResponse;
       } else {

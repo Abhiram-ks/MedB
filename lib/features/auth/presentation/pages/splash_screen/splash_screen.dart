@@ -9,22 +9,25 @@ class SplashScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocListener<SplashBlocBloc, SplashBlocState>(
-      listener: (context, state) {
-       splashStateHandle(context, state);
-      },
-      child: LayoutBuilder(
-        builder: (context, constraints) {
-          double screenHeight = constraints.maxHeight;
-          double screenWidth = constraints.maxWidth;
-
-          return Scaffold(
-            body: SplashScreenBody(
-              screenWidth: screenWidth,
-              screenHeight: screenHeight,
-            ),
-          );
+    return BlocProvider(
+      create:  (context) => SplashBlocBloc()..add(SplashEventRequest()),
+      child: BlocListener<SplashBlocBloc, SplashBlocState>(
+        listener: (context, state) {
+          splashStateHandle(context, state);
         },
+        child: LayoutBuilder(
+          builder: (context, constraints) {
+            double screenHeight = constraints.maxHeight;
+            double screenWidth = constraints.maxWidth;
+
+            return Scaffold(
+              body: SplashScreenBody(
+                screenWidth: screenWidth,
+                screenHeight: screenHeight,
+              ),
+            );
+          },
+        ),
       ),
     );
   }

@@ -6,9 +6,6 @@ import 'package:medb/features/auth/data/models/menu_module_model.dart';
 import 'package:medb/features/auth/data/models/user_details_model.dart';
 import '../models/login_response_model.dart';
 
-import 'dart:convert';
-import 'package:flutter_secure_storage/flutter_secure_storage.dart';
-
 class AuthService {
   static const FlutterSecureStorage _storage = FlutterSecureStorage(
     aOptions: AndroidOptions(
@@ -150,11 +147,9 @@ class AuthService {
             }
           }
 
-          print('AuthService: Persisted data loaded successfully');
         }
       }
     } catch (e) {
-      print('AuthService: Error loading persisted data: $e');
       await clearLoginData();
     }
   }
@@ -171,8 +166,6 @@ class AuthService {
     
     return sorted;
   }
-
-
 
 
 

@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:medb/core/errors/failures.dart';
 import 'package:medb/features/auth/data/models/login_response_model.dart';
 
-import '../../../../../../core/hash/hash_function.dart';
 import '../../../../domain/repositories/auth_repository.dart';
 part 'login_bloc_event.dart';
 part 'login_bloc_state.dart';
