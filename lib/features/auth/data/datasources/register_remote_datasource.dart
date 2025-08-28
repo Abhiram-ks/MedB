@@ -1,4 +1,3 @@
-import 'dart:developer';
 
 import 'package:dio/dio.dart';
 
@@ -32,7 +31,6 @@ class RegisterRemoteDatasource {
       }
     )
     );
-    log('${respose.statusCode} ${respose.data}');
     if(respose.statusCode != 200 && respose.statusCode != 201){
       throw DioException(
       requestOptions: respose.requestOptions,

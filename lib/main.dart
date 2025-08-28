@@ -9,7 +9,6 @@ import 'package:medb/features/auth/domain/usecases/register_user_usecase.dart';
 import 'package:medb/features/auth/presentation/state/bloc/register_bloc/register_bloc_bloc.dart';
 import 'package:medb/features/auth/presentation/state/bloc/splash_bloc/splash_bloc_bloc.dart';
 import 'package:medb/features/auth/presentation/state/cubit/progresser_cubit/progresser_cubit_cubit.dart';
-import 'package:medb/features/auth/presentation/state/cubit/progresser_cubit/progresser_cubit_cubit.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized(); //! Initialize Flutter engine before using plugins or async code
@@ -24,11 +23,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
-        BlocProvider(
-          create: (context) => SplashBlocBloc()..add(SplashEventRequest()),
-        ),
+        BlocProvider(create: (context) => SplashBlocBloc()..add(SplashEventRequest())),
         BlocProvider(create: (context) => ProgresserCubitCubit()),
-        BlocProvider(create: (context) => RegisterBlocBloc(RegisterUser(RegisterRepository(RegisterRemoteDatasource(Dio())))),)
+        BlocProvider(create: (context) => RegisterBlocBloc(RegisterUser(RegisterRepository(RegisterRemoteDatasource(Dio())))))
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,

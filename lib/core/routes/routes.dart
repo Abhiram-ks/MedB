@@ -49,9 +49,7 @@ class AppRoutes {
                                 fontWeight: FontWeight.bold,
                               ),
                             ),
-
                            ConstantWidgets.hight20(context),
-
                             Text(
                               'The page you were looking for could not be found. '
                               'It might have been removed, renamed, or does not exist.',

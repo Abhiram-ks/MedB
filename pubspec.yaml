@@ -39,6 +39,7 @@ dependencies:
   bloc: ^9.0.0 # bloc: Core state management library (business logic, events, states)
   lottie: ^3.3.1 # Lottie: Library for rendering animations
   dio: ^5.9.0 # Dio: Advanced HTTP client for API communication and networking
+  crypto: ^3.0.6
 
 dev_dependencies:
   flutter_test:

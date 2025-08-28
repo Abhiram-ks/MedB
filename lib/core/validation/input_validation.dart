@@ -19,8 +19,8 @@ class ValidatorHelper {
       return "Password is required";
     } else if (password.length < 6) {
       return "Password is too short (min 6 characters)";
-    } else if (password.length > 15) {
-      return "Password is too long (max 15 characters)";
+    } else if (password.length > 25) {
+      return "Password is too long (max 25 characters)";
     }
     return null;
   }

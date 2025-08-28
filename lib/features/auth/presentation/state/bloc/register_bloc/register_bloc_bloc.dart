@@ -1,4 +1,3 @@
-import 'dart:developer';
 
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
@@ -30,7 +29,6 @@ class RegisterBlocBloc extends Bloc<RegisterBlocEvent, RegisterBlocState> {
       _middleName = event.middleName;
       _lastName = event.lastName;
       _phoneNumber = event.phoneNumber;
-      log('firstName: ${event.firstName}, middleName: ${event.middleName}, lastName: ${event.lastName}, _phoneNumber: ${event.phoneNumber}');
       emit(RegisterGoToCredential());
     });
    
@@ -46,7 +44,6 @@ class RegisterBlocBloc extends Bloc<RegisterBlocEvent, RegisterBlocState> {
       emit(RegisterLoading());
 
       try {
-        log('firstName $_firstName, middleName: $_middleName, lastName: $_lastName, email: $_email, phone: $_phoneNumber, password: $_password');
         final failure  = await _registerUser.call(
           firstName: _firstName,
           middleName: _middleName ?? '',
