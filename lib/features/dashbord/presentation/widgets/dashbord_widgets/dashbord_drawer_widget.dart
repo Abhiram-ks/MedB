@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:medb/core/themes/colors.dart';
-import 'package:medb/features/dashbord/presentation/state/logout_bloc/logout_bloc_bloc.dart';
+import 'package:medb/features/dashbord/presentation/state/bloc/logout_bloc/logout_bloc_bloc.dart';
 import 'package:medb/features/dashbord/presentation/widgets/dashbord_widgets/dashbord_drawer_builder.dart';
 import 'package:medb/features/dashbord/presentation/widgets/dashbord_widgets/dashbord_logout_state_handle.dart';
 

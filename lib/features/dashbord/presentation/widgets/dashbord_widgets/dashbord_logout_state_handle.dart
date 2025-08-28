@@ -3,7 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:medb/core/routes/routes.dart';
 import 'package:medb/features/auth/presentation/state/cubit/progresser_cubit/progresser_cubit_cubit.dart';
-import 'package:medb/features/dashbord/presentation/state/logout_bloc/logout_bloc_bloc.dart';
+import 'package:medb/features/dashbord/presentation/state/bloc/logout_bloc/logout_bloc_bloc.dart';
 
 import '../../../../../core/common/custom_snackbar.dart';
 import '../../../../../core/themes/colors.dart';

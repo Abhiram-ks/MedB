@@ -5,6 +5,7 @@ import 'package:medb/features/auth/presentation/pages/login_screen/login_screen.
 import 'package:medb/features/auth/presentation/pages/register_screen/register_credential_screen.dart';
 import 'package:medb/features/auth/presentation/pages/register_screen/register_details_screen.dart';
 import 'package:medb/features/dashbord/presentation/screens/dashbord_screen/dashbord_screen.dart';
+import 'package:medb/features/dashbord/presentation/screens/profile_screen/profile_screen.dart';
 
 import '../../features/auth/presentation/pages/splash_screen/splash_screen.dart';
 
@@ -14,6 +15,7 @@ class AppRoutes {
   static const String register = '/register_screen';
   static const String credentials = '/register_credential_screen';
   static const String dashbord = '/dashbord_screen.dart';
+  static const String profile = '/profile_screen';
 
 
   static Route<dynamic> generateRoute(RouteSettings settings) {
@@ -28,6 +30,8 @@ class AppRoutes {
         return MaterialPageRoute(builder: (_) => const RegisterCredentialScreen());
       case dashbord:
         return MaterialPageRoute(builder: (_) =>  DashboardScreen());
+      case profile:
+        return MaterialPageRoute(builder: (_) => const ProfileScreen());
       default:
         return MaterialPageRoute(
           builder:

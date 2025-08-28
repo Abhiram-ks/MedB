@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:medb/core/routes/routes.dart';
 import 'package:medb/core/themes/colors.dart';
 import 'package:medb/features/auth/data/models/menu_module_model.dart';
 import 'package:medb/features/dashbord/presentation/state/cubit/menu_cubit/menu_cubit_cubit.dart';
@@ -99,7 +100,7 @@ class CustomAppBarDashbord extends StatelessWidget
                     : 'https://cdn-icons-png.flaticon.com/512/9187/9187604.png';
             return GestureDetector(
               onTap: () {
-                Scaffold.of(context).openDrawer();
+                Navigator.pushNamed(context, AppRoutes.profile);
               },
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 16.0),

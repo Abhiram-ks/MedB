@@ -88,4 +88,48 @@ class UserDetailsModel {
         'profilePicture': profilePicture,
         'email': email,
       };
+
+  UserDetailsModel copyWith({
+    String? userId,
+    String? clinicId,
+    String? doctorId,
+    List<String>? doctorClinics,
+    String? firstName,
+    String? middleName,
+    String? lastName,
+    int? age,
+    String? gender,
+    String? designation,
+    String? contactNo,
+    String? address,
+    String? city,
+    String? district,
+    String? state,
+    String? country,
+    String? postalCode,
+    String? profilePicture,
+    String? email,
+  }) {
+    return UserDetailsModel(
+      userId: userId ?? this.userId,
+      clinicId: clinicId ?? this.clinicId,
+      doctorId: doctorId ?? this.doctorId,
+      doctorClinics: doctorClinics ?? this.doctorClinics,
+      firstName: firstName ?? this.firstName,
+      middleName: middleName ?? this.middleName,
+      lastName: lastName ?? this.lastName,
+      age: age ?? this.age,
+      gender: gender ?? this.gender,
+      designation: designation ?? this.designation,
+      contactNo: contactNo ?? this.contactNo,
+      address: address ?? this.address,
+      city: city ?? this.city,
+      district: district ?? this.district,
+      state: state ?? this.state,
+      country: country ?? this.country,
+      postalCode: postalCode ?? this.postalCode,
+      profilePicture: profilePicture ?? this.profilePicture,
+      email: email ?? this.email,
+    );
+  }
 }

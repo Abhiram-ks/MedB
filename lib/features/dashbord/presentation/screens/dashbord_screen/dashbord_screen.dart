@@ -6,7 +6,7 @@ import 'package:medb/core/themes/colors.dart';
 import 'package:medb/features/auth/data/datasources/auth_remote_datasource.dart';
 import 'package:medb/features/dashbord/data/repositories/logout_repository_impl.dart';
 import 'package:medb/features/dashbord/presentation/state/cubit/menu_cubit/menu_cubit_cubit.dart';
-import 'package:medb/features/dashbord/presentation/state/logout_bloc/logout_bloc_bloc.dart';
+import 'package:medb/features/dashbord/presentation/state/bloc/logout_bloc/logout_bloc_bloc.dart';
 import 'package:medb/features/dashbord/presentation/widgets/dashbord_widgets/dashbord_appbar_widget.dart';
 import 'package:medb/features/dashbord/presentation/widgets/dashbord_widgets/dashbord_drawer_widget.dart';
 
