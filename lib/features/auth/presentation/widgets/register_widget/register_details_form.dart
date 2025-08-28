@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:medb/core/routes/routes.dart';
 import 'package:medb/core/themes/colors.dart';
 import 'package:medb/features/auth/presentation/state/bloc/register_bloc/register_bloc_bloc.dart';
 import 'package:medb/features/auth/presentation/widgets/register_widget/register_state_handle.dart';
@@ -88,8 +89,7 @@ class _RegisterDetailsFormState extends State<RegisterDetailsForm> {
                 } else {
                   CustomSnackBar.show(
                     context,
-                    message:
-                        'Please fill in all the required credentials before proceeding to the next step.',
+                    message: 'Please fill in all the required credentials before proceeding to the next step.',
                     backgroundColor: AppPalette.redColor,
                   );
                 }

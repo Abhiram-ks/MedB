@@ -1,9 +1,13 @@
+import 'dart:developer';
+
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
+import 'package:medb/features/auth/domain/usecases/register_user_usecase.dart';
 part 'register_bloc_event.dart';
 part 'register_bloc_state.dart';
 
 class RegisterBlocBloc extends Bloc<RegisterBlocEvent, RegisterBlocState> {
+  final RegisterUser _registerUser;
   //  Private variable (only accessible inside this library/file)
   String _firstName = '';
   String? _middleName;
@@ -19,13 +23,14 @@ class RegisterBlocBloc extends Bloc<RegisterBlocEvent, RegisterBlocState> {
   String get email => _email;
   String get password => _password;
 
-  RegisterBlocBloc() : super(RegisterBlocInitial()) {
+  RegisterBlocBloc(this._registerUser) : super(RegisterBlocInitial()) {
    //Used to gather essential client information.
     on<RegisterDetailsFormEvent>((event, emit) {
       _firstName = event.firstName;
       _middleName = event.middleName;
       _lastName = event.lastName;
       _phoneNumber = event.phoneNumber;
+      log('firstName: ${event.firstName}, middleName: ${event.middleName}, lastName: ${event.lastName}, _phoneNumber: ${event.phoneNumber}');
       emit(RegisterGoToCredential());
     });
    
@@ -33,9 +38,32 @@ class RegisterBlocBloc extends Bloc<RegisterBlocEvent, RegisterBlocState> {
     on<RegisterCredentialFormEvent>((event, emit) {
       _email = event.emailID;
       _password = event.password;
+
       emit(RegisterConfirmationState(event.emailID));
     });
 
+    on<CreateAnAccount>((event, emit) async{
+      emit(RegisterLoading());
 
+      try {
+        log('firstName $_firstName, middleName: $_middleName, lastName: $_lastName, email: $_email, phone: $_phoneNumber, password: $_password');
+        final failure  = await _registerUser.call(
+          firstName: _firstName,
+          middleName: _middleName ?? '',
+          lastName: _lastName ?? '',
+          email: _email, 
+          phone: _phoneNumber, 
+          password: _password,
+          );
+
+          if (failure == null) {
+            emit(RegisterSuccess());
+          }else {
+            emit(RegisterFailure(error: failure.message));
+          }
+      } catch (e) {
+         emit(RegisterFailure(error: 'Unexpected error occurred. Please try again. $e'));
+      }
+    });
   }
 }

@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:medb/core/common/custom_button.dart';
+import 'package:medb/core/debouncer/debouncer.dart';
 import 'package:medb/core/themes/colors.dart';
 import 'package:medb/features/auth/presentation/widgets/register_widget/register_state_handle.dart';
 
@@ -18,12 +19,12 @@ class RegisterCredentialForm extends StatefulWidget {
 }
 
 class _RegisterCredentialFormState extends State<RegisterCredentialForm> {
+  final Debouncer _debouncer = Debouncer(millisecound: 500);
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
-  final TextEditingController _confirmPasswordController =
-      TextEditingController();
+  final TextEditingController _confirmPasswordController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -65,6 +66,8 @@ class _RegisterCredentialFormState extends State<RegisterCredentialForm> {
             child: CustomButton(
               text: 'Create an Account',
               onPressed: () {
+                _debouncer.run(() {
+
                 if (_formKey.currentState!.validate()) {
                   context.read<RegisterBlocBloc>().add(
                     RegisterCredentialFormEvent(
@@ -79,6 +82,7 @@ class _RegisterCredentialFormState extends State<RegisterCredentialForm> {
                     backgroundColor: AppPalette.redColor,
                   );
                 }
+                });
               },
             ),
           ),

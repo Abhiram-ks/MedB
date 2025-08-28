@@ -15,6 +15,7 @@ final class RegisterConfirmationState extends RegisterBlocState {
 }
 
 final class RegisterLoading extends RegisterBlocState {}
+final class RegisterSuccess extends RegisterBlocState {}
 final class RegisterFailure extends RegisterBlocState {
   final String error;
 
