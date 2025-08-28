@@ -3,12 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:medb/features/auth/presentation/state/bloc/login_bloc/login_bloc_bloc.dart';
 import 'package:medb/features/auth/presentation/widgets/login_widget/login_state_handle.dart';
-
 import '../../../../../core/common/custom_button.dart';
 import '../../../../../core/common/custom_snackbar.dart';
 import '../../../../../core/common/custom_textedit.dart';
 import '../../../../../core/constants/app_images.dart';
 import '../../../../../core/constants/constant.dart';
+import '../../../../../core/debouncer/debouncer.dart';
 import '../../../../../core/themes/colors.dart';
 import '../../../../../core/validation/input_validation.dart';
 
@@ -22,6 +22,8 @@ class LoginCredentialPart extends StatefulWidget {
 }
 
 class _LoginCredentialPartState extends State<LoginCredentialPart> {
+  final Debouncer _debouncer = Debouncer(millisecound: 500);
+
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
@@ -101,7 +103,8 @@ class _LoginCredentialPartState extends State<LoginCredentialPart> {
             child: CustomButton(
               text: 'Login',
               onPressed: () {
-                if (_formKey.currentState!.validate()) {
+                _debouncer.run((){
+                 if (_formKey.currentState!.validate()) {
                   context.read<LoginBlocBloc>().add(
                     LoginCredentailRequest(
                       email: _emailController.text.trim(),
@@ -116,6 +119,8 @@ class _LoginCredentialPartState extends State<LoginCredentialPart> {
                   backgroundColor: AppPalette.redColor,
                 );
                 }
+                });
+                
 
               },
             ),

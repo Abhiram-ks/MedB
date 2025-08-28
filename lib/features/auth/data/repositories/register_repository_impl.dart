@@ -23,7 +23,7 @@ class RegisterRepository {
         email: email,
         phone: phone, 
         password: password);
-      return null; //success state
+      return null;
     } catch (e) {
       return ErrorMapper.mapError(e);
     }

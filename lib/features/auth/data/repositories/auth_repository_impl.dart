@@ -6,8 +6,6 @@ import 'package:medb/features/auth/domain/repositories/auth_repository.dart';
 import '../../../../core/errors/failures.dart';
 
 
-
-
 class AuthRepositoryImpl implements AuthRepository {
   final ApiService _service;
 
@@ -17,7 +15,7 @@ class AuthRepositoryImpl implements AuthRepository {
   Future<LoginResponseModel> login({required String email, required String password}) async {
     try {
       return await _service.login(email, password);
-    } on Failures catch (failure) {
+    } on Failures catch (_) {
       rethrow;
     } catch (e) {
       throw ServerFailure("Unexpected error: ${e.toString()}");

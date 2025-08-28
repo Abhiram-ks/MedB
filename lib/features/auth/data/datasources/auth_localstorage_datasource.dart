@@ -1,7 +1,5 @@
 import 'dart:convert';
-import 'dart:developer';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
-import 'package:medb/features/auth/data/models/menu_item_model.dart';
 import 'package:medb/features/auth/data/models/menu_module_model.dart';
 import 'package:medb/features/auth/data/models/user_details_model.dart';
 import '../models/login_response_model.dart';
@@ -52,9 +50,7 @@ class AuthService {
         _storage.write(key: _isLoggedInKey, value: 'true'),
       ]);
 
-      log('AuthService: Login data stored successfully');
     } catch (e) {
-      log('AuthService: Error storing login data: $e');
       throw Exception('Failed to store login data');
     }
   }
@@ -82,31 +78,8 @@ class AuthService {
         _storage.delete(key: _isLoggedInKey),
       ]);
 
-    } catch (_) {
-    }
-  }
-
-  static Future<void> updateAccessToken(String newAccessToken) async {
-    try {
-      _accessToken = newAccessToken;
-      await _storage.write(key: _accessTokenKey, value: newAccessToken);
-     
-    } catch (_) {
-    }
-  }
-
-  static Future<void> updateMenuData(List<MenuModule> menuData) async {
-    try {
-      _menuData = menuData;
-      
-      String menuDataJson = jsonEncode(
-        menuData.map((module) => module.toJson()).toList()
-      );
-      
-      await _storage.write(key: _menuDataKey, value: menuDataJson);
-      print('AuthService: Menu data updated successfully');
     } catch (e) {
-      print('AuthService: Error updating menu data: $e');
+      throw Exception('Failed : $e');
     }
   }
 
@@ -130,7 +103,7 @@ class AuthService {
               final userDetailsJson = jsonDecode(userDetailsStr);
               _userDetails = UserDetailsModel.fromJson(userDetailsJson);
             } catch (e) {
-              print('Error decoding user details: $e');
+             throw Exception('Failed : $e');
             }
           }
 
@@ -140,9 +113,7 @@ class AuthService {
               _menuData = menuDataJson
                   .map((moduleJson) => MenuModule.fromJson(moduleJson))
                   .toList();
-              print('AuthService: Menu data loaded successfully - ${_menuData?.length} modules');
             } catch (e) {
-              print('Error decoding menu data: $e');
               _menuData = null;
             }
           }
@@ -167,31 +138,6 @@ class AuthService {
     return sorted;
   }
 
-
-
-
-  static List<MenuItemModel> get allMenuItems {
-    if (_menuData == null) return [];
-    
-    List<MenuItemModel> allMenus = [];
-    for (var module in _menuData!) {
-      allMenus.addAll(module.menus);
-    }
-    
-    allMenus.sort((a, b) {
-      final moduleA = _menuData!.firstWhere((m) => m.menus.contains(a));
-      final moduleB = _menuData!.firstWhere((m) => m.menus.contains(b));
-      
-      final moduleCompare = moduleA.sortOrder.compareTo(moduleB.sortOrder);
-      if (moduleCompare != 0) return moduleCompare;
-      
-      return a.sortOrder.compareTo(b.sortOrder);
-    });
-    
-    return allMenus;
-  }
-
   static bool get hasMenuData => _menuData != null && _menuData!.isNotEmpty;
   
-  static int get menuModuleCount => _menuData?.length ?? 0;
 }
