@@ -39,7 +39,11 @@ dependencies:
   bloc: ^9.0.0 # bloc: Core state management library (business logic, events, states)
   lottie: ^3.3.1 # Lottie: Library for rendering animations
   dio: ^5.9.0 # Dio: Advanced HTTP client for API communication and networking
-  crypto: ^3.0.6
+  crypto: ^3.0.6 # crypto: Cryptography operation (hashing/encrypt sensitive info)
+  cookie_jar: ^4.0.8 # cookie_jar: Stores cookies automatically
+  dio_cookie_manager: ^3.3.0 # dio_cookie_manager: Integrates cookies with Dio
+  flutter_secure_storage: ^9.2.4 # Securely stores sensitive data on the device (encrypted)
+  shared_preferences: ^2.5.3 # Store plain text datas
 
 dev_dependencies:
   flutter_test:

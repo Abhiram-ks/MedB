@@ -31,7 +31,7 @@ void registerStateHandle(BuildContext context, RegisterBlocState state) {
                   Navigator.of(dialogContext).pop();
                   final registerBloc = context.read<RegisterBlocBloc>();
                   Future.delayed(Duration(milliseconds: 50), () {
-                   registerBloc.add(CreateAnAccount());
+                    registerBloc.add(CreateAnAccount());
                   });
                 },
               ),

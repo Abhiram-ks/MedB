@@ -12,5 +12,5 @@ class NetworkFailure extends Failures {
 }
 
 class ValidationFailure extends Failures {
-  const ValidationFailure (super.message);
+  const ValidationFailure(super.message);
 }

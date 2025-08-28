@@ -1,5 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:medb/features/auth/presentation/state/bloc/login_bloc/login_bloc_bloc.dart';
+import 'package:medb/features/auth/presentation/widgets/login_widget/login_state_handle.dart';
 
 import '../../../../../core/common/custom_button.dart';
 import '../../../../../core/common/custom_snackbar.dart';
@@ -23,11 +26,10 @@ class _LoginCredentialPartState extends State<LoginCredentialPart> {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
 
-  
   @override
   void dispose() {
     _emailController.dispose();
-    _passwordController.dispose();  
+    _passwordController.dispose();
     super.dispose();
   }
 
@@ -92,14 +94,31 @@ class _LoginCredentialPartState extends State<LoginCredentialPart> {
           ),
 
           ConstantWidgets.hight30(context),
-          CustomButton(
-            text: 'Login',
-            onPressed: () {
-            if (_formKey.currentState!.validate()) {
-              
-            }
-             CustomSnackBar.show(context, message: 'Please fill in all the required credentials before proceeding to the next step.', backgroundColor: AppPalette.redColor);
+          BlocListener<LoginBlocBloc, LoginBlocState>(
+            listener: (context, state) {
+              loginStateHandle(context, state);
             },
+            child: CustomButton(
+              text: 'Login',
+              onPressed: () {
+                if (_formKey.currentState!.validate()) {
+                  context.read<LoginBlocBloc>().add(
+                    LoginCredentailRequest(
+                      email: _emailController.text.trim(),
+                      password: _passwordController.text.trim(),
+                    ),
+                  );
+                } else {
+                CustomSnackBar.show(
+                   context,
+                  message:
+                      'Please fill in all the required credentials before proceeding to the next step.',
+                  backgroundColor: AppPalette.redColor,
+                );
+                }
+
+              },
+            ),
           ),
           ConstantWidgets.hight20(context),
         ],
@@ -107,7 +126,3 @@ class _LoginCredentialPartState extends State<LoginCredentialPart> {
     );
   }
 }
-
-
-
-

@@ -2,6 +2,8 @@
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:medb/features/auth/domain/usecases/register_user_usecase.dart';
+
+import '../../../../../../core/hash/hash_function.dart';
 part 'register_bloc_event.dart';
 part 'register_bloc_state.dart';
 
@@ -44,6 +46,8 @@ class RegisterBlocBloc extends Bloc<RegisterBlocEvent, RegisterBlocState> {
       emit(RegisterLoading());
 
       try {
+       // final hashedPassword = HashFunction.generateHash(_password);
+
         final failure  = await _registerUser.call(
           firstName: _firstName,
           middleName: _middleName ?? '',
