@@ -43,7 +43,6 @@ dependencies:
   cookie_jar: ^4.0.8 # cookie_jar: Stores cookies automatically
   dio_cookie_manager: ^3.3.0 # dio_cookie_manager: Integrates cookies with Dio
   flutter_secure_storage: ^9.2.4 # Securely stores sensitive data on the device (encrypted)
-  shared_preferences: ^2.5.3 # Store plain text datas
 
 dev_dependencies:
   flutter_test:
