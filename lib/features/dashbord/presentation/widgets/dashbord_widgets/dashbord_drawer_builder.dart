@@ -12,7 +12,7 @@ class DrawerBuilder extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<MenuCubit, List<MenuModule>>(
+    return BlocBuilder<MenuCubit, List<MenuModel>>(
       builder: (context, modules) {
         if (modules.isEmpty) {
           return const Center(child: Text("No menu available"));

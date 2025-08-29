@@ -4,8 +4,8 @@ import 'menu_module_model.dart';
 class LoginResponseModel {
   final String accessToken;
   final String loginKey;
-  final UserDetailsModel userDetails;
-  final List<MenuModule> menuData;
+  final UserModel userDetails;
+  final List<MenuModel> menuData;
 
   LoginResponseModel({
     required this.accessToken,
@@ -18,9 +18,9 @@ class LoginResponseModel {
     return LoginResponseModel(
       accessToken: json['accessToken'] ?? '',
       loginKey: json['loginKey'] ?? '',
-      userDetails: UserDetailsModel.fromJson(json['userDetails'] ?? {}),
+      userDetails: UserModel.fromJson(json['userDetails'] ?? {}),
       menuData: (json['menuData'] as List<dynamic>?)
-          ?.map((item) => MenuModule.fromJson(item as Map<String, dynamic>))
+          ?.map((item) => MenuModel.fromJson(item as Map<String, dynamic>))
           .toList() ?? [],
     );
   }

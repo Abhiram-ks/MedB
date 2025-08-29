@@ -5,7 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:medb/features/auth/data/datasources/auth_localstorage_datasource.dart';
 import 'package:medb/features/auth/data/models/menu_module_model.dart';
 
-class MenuCubit extends Cubit<List<MenuModule>> {
+class MenuCubit extends Cubit<List<MenuModel>> {
   MenuCubit() : super([]);
 
   void loadMenuData() {

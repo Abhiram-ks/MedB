@@ -7,7 +7,7 @@ import 'package:medb/features/auth/data/models/user_details_model.dart';
 class ProfileScreenBody extends StatelessWidget {
   final double screenWidth;
   final double screenHight;
-  final UserDetailsModel user;
+  final UserModel user;
 
   const ProfileScreenBody({
     super.key,

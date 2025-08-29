@@ -44,7 +44,7 @@ class ApiService {
           try {
 
             if (e.response?.statusCode == 401) {
-              await AuthService.clearLoginData();
+              await AuthService.clearLoginCredentials();
             }
 
             handler.reject(
@@ -84,7 +84,7 @@ class ApiService {
       
         final loginResponse = LoginResponseModel.fromJson(response.data);
 
-        await AuthService.storeLoginData(loginResponse);
+        await AuthService.storeLoginCredentials(loginResponse);
         return loginResponse;
       } else {
         throw ServerFailure("Login failed: ${response.statusCode}");
@@ -101,7 +101,7 @@ class ApiService {
     final response = await _dio.post('/logout');
 
     if (response.statusCode == 200) {
-      await AuthService.clearLoginData();
+      await AuthService.clearLoginCredentials();
       return response.data["message"] ?? "Logged out successfully";
     } else {
       throw ServerFailure("Logout failed: ${response.statusCode}");

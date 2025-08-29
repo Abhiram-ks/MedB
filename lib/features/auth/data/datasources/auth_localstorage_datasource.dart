@@ -14,23 +14,23 @@ class AuthService {
     ),
   );
 
-  static const String _accessTokenKey = 'access_token';
-  static const String _loginKeyKey = 'login_key';
-  static const String _userDetailsKey = 'user_details';
-  static const String _menuDataKey = 'menu_data'; 
-  static const String _isLoggedInKey = 'is_logged_in';
+  static const String _isAccessToken = 'access_token';
+  static const String _isLoginKey = 'login_key';
+  static const String _isUserDetails = 'user_details';
+  static const String _isMenuData = 'menu_data'; 
+  static const String _isLoged = 'is_loged';
 
   static String? _accessToken;
   static String? _loginKey;
-  static UserDetailsModel? _userDetails;
-  static List<MenuModule>? _menuData; 
+  static UserModel? _userDetails;
+  static List<MenuModel>? _menuData; 
   static bool _isLoggedIn = false;
 
   static Future<void> init() async {
-    await _loadPersistedData();
+    await _restoreSaveDatas();
   }
 
-  static Future<void> storeLoginData(LoginResponseModel loginResponse) async {
+  static Future<void> storeLoginCredentials(LoginResponseModel loginResponse) async {
     try {
       _accessToken = loginResponse.accessToken;
       _loginKey = loginResponse.loginKey;
@@ -43,11 +43,11 @@ class AuthService {
       );
 
       await Future.wait([
-        _storage.write(key: _accessTokenKey, value: loginResponse.accessToken),
-        _storage.write(key: _loginKeyKey, value: loginResponse.loginKey),
-        _storage.write(key: _userDetailsKey, value: jsonEncode(loginResponse.userDetails.toJson())),
-        _storage.write(key: _menuDataKey, value: menuDataJson), 
-        _storage.write(key: _isLoggedInKey, value: 'true'),
+        _storage.write(key: _isAccessToken, value: loginResponse.accessToken),
+        _storage.write(key: _isLoginKey, value: loginResponse.loginKey),
+        _storage.write(key: _isUserDetails, value: jsonEncode(loginResponse.userDetails.toJson())),
+        _storage.write(key: _isMenuData, value: menuDataJson), 
+        _storage.write(key: _isLoged, value: 'true'),
       ]);
 
     } catch (e) {
@@ -58,11 +58,11 @@ class AuthService {
   
   static String? get accessToken => _accessToken;
   static String? get loginKey => _loginKey;
-  static UserDetailsModel? get userDetails => _userDetails;
-  static List<MenuModule>? get menuData => _menuData;
+  static UserModel? get userDetails => _userDetails;
+  static List<MenuModel>? get menuData => _menuData;
   static bool get isLoggedIn => _isLoggedIn && _accessToken != null;
 
-  static Future<void> clearLoginData() async {
+  static Future<void> clearLoginCredentials() async {
     try {
       _accessToken = null;
       _loginKey = null;
@@ -71,11 +71,11 @@ class AuthService {
       _isLoggedIn = false;
 
       await Future.wait([
-        _storage.delete(key: _accessTokenKey),
-        _storage.delete(key: _loginKeyKey),
-        _storage.delete(key: _userDetailsKey),
-        _storage.delete(key: _menuDataKey), 
-        _storage.delete(key: _isLoggedInKey),
+        _storage.delete(key: _isAccessToken),
+        _storage.delete(key: _isLoginKey),
+        _storage.delete(key: _isUserDetails),
+        _storage.delete(key: _isMenuData), 
+        _storage.delete(key: _isLoged),
       ]);
 
     } catch (e) {
@@ -83,15 +83,15 @@ class AuthService {
     }
   }
 
-  static Future<void> _loadPersistedData() async {
+  static Future<void> _restoreSaveDatas() async {
     try {
-      final isLoggedIn = await _storage.read(key: _isLoggedInKey);
+      final isLoggedIn = await _storage.read(key: _isLoged);
       
       if (isLoggedIn == 'true') {
-        final accessToken = await _storage.read(key: _accessTokenKey);
-        final loginKey = await _storage.read(key: _loginKeyKey);
-        final userDetailsStr = await _storage.read(key: _userDetailsKey);
-        final menuDataStr = await _storage.read(key: _menuDataKey); 
+        final accessToken = await _storage.read(key: _isAccessToken);
+        final loginKey = await _storage.read(key: _isLoginKey);
+        final userDetailsStr = await _storage.read(key: _isUserDetails);
+        final menuDataValue = await _storage.read(key: _isMenuData); 
 
         if (accessToken != null && loginKey != null) {
           _accessToken = accessToken;
@@ -101,17 +101,17 @@ class AuthService {
           if (userDetailsStr != null) {
             try {
               final userDetailsJson = jsonDecode(userDetailsStr);
-              _userDetails = UserDetailsModel.fromJson(userDetailsJson);
+              _userDetails = UserModel.fromJson(userDetailsJson);
             } catch (e) {
              throw Exception('Failed : $e');
             }
           }
 
-          if (menuDataStr != null) {
+          if (menuDataValue != null) {
             try {
-              final menuDataJson = jsonDecode(menuDataStr) as List;
+              final menuDataJson = jsonDecode(menuDataValue) as List;
               _menuData = menuDataJson
-                  .map((moduleJson) => MenuModule.fromJson(moduleJson))
+                  .map((moduleJson) => MenuModel.fromJson(moduleJson))
                   .toList();
             } catch (e) {
               _menuData = null;
@@ -121,14 +121,14 @@ class AuthService {
         }
       }
     } catch (e) {
-      await clearLoginData();
+      await clearLoginCredentials();
     }
   }
 
-  static List<MenuModule> get sortedModules {
+  static List<MenuModel> get sortedModules {
     if (_menuData == null) return [];
     
-    final sorted = List<MenuModule>.from(_menuData!);
+    final sorted = List<MenuModel>.from(_menuData!);
     sorted.sort((a, b) => a.sortOrder.compareTo(b.sortOrder));
     
     for (var module in sorted) {

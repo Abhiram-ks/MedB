@@ -1,4 +1,4 @@
-class UserDetailsModel {
+class UserModel {
   final String userId;
   final String? clinicId;
   final String? doctorId;
@@ -19,7 +19,7 @@ class UserDetailsModel {
   final String? profilePicture;
   final String email;
 
-  UserDetailsModel({
+  UserModel({
     required this.userId,
     this.clinicId,
     this.doctorId,
@@ -41,8 +41,8 @@ class UserDetailsModel {
     required this.email,
   });
 
-  factory UserDetailsModel.fromJson(Map<String, dynamic> json) {
-    return UserDetailsModel(
+  factory UserModel.fromJson(Map<String, dynamic> json) {
+    return UserModel(
       userId: json['userId'] ?? '',
       clinicId: json['clinicId'],
       doctorId: json['doctorId'],
@@ -89,7 +89,7 @@ class UserDetailsModel {
         'email': email,
       };
 
-  UserDetailsModel copyWith({
+  UserModel copyWith({
     String? userId,
     String? clinicId,
     String? doctorId,
@@ -110,7 +110,7 @@ class UserDetailsModel {
     String? profilePicture,
     String? email,
   }) {
-    return UserDetailsModel(
+    return UserModel(
       userId: userId ?? this.userId,
       clinicId: clinicId ?? this.clinicId,
       doctorId: doctorId ?? this.doctorId,

@@ -1,14 +1,14 @@
 import 'package:medb/features/auth/data/models/menu_item_model.dart';
 
 
-class MenuModule {
+class MenuModel {
   final int moduleId;
   final String moduleName;
   final int sortOrder;
   final String? moduleIcon;
   final List<MenuItemModel> menus;
 
-  MenuModule({
+  MenuModel({
     required this.moduleId,
     required this.moduleName,
     required this.sortOrder,
@@ -16,8 +16,8 @@ class MenuModule {
     required this.menus,
   });
 
-  factory MenuModule.fromJson(Map<String, dynamic> json) {
-    return MenuModule(
+  factory MenuModel.fromJson(Map<String, dynamic> json) {
+    return MenuModel(
       moduleId: json['moduleId'] ?? 0,
       moduleName: json['moduleName'] ?? '',
       sortOrder: json['sortOrder'] ?? 0,

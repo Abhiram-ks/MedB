@@ -23,7 +23,7 @@ class ProfileScreen extends StatelessWidget {
 
           return Scaffold(
             appBar: const CustomAppBar(),
-            body: BlocBuilder<UserDetailsCubit, UserDetailsModel?>(
+            body: BlocBuilder<UserDetailsCubit, UserModel?>(
               builder: (context, userDetails) {
                 if (userDetails == null) {
                   return Center(child: Text(

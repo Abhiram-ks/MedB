@@ -1,13 +1,13 @@
 import 'menu_item_entity.dart';
 
-class MenuModuleEntity {
+class MenuModelEntity {
   final int moduleId;
   final String moduleName;
   final int sortOrder;
   final String? moduleIcon;
   final List<MenuItemEntity> menus;
 
-  MenuModuleEntity({
+  MenuModelEntity({
     required this.moduleId,
     required this.moduleName,
     required this.sortOrder,

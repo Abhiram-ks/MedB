@@ -92,7 +92,7 @@ class CustomAppBarDashbord extends StatelessWidget
               ),
           ],
         ),
-        BlocBuilder<MenuCubit, List<MenuModule>>(
+        BlocBuilder<MenuCubit, List<MenuModel>>(
           builder: (context, modules) {
             final String profileImageUrl =
                 (modules.isNotEmpty && modules.first.moduleIcon != null)

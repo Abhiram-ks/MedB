@@ -18,7 +18,7 @@ class SplashBlocBloc extends Bloc<SplashBlocEvent, SplashBlocState> {
         if (isValid) {
           emit(SplashBlocGoToDashBord());
         } else {
-          await AuthService.clearLoginData();
+          await AuthService.clearLoginCredentials();
           emit(SplashBlocGoToLogin());
         }
       } else {
