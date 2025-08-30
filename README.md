@@ -1,6 +1,7 @@
 ![image alt](https://github.com/Abhiram-ks/MedB/blob/eff4d8a2d0302c5570eeed1f8a7be0cb3209e103/medb_image.png)
 
-#MedB
+
+# MedB
 
 # What MedB? Why MedB
 MedB is revolutionizing healthcare by blending advanced technology with compassionate care. Our platform seamlessly connects patients with healthcare providers, making it effortless to book appointments, access medical records, and manage health information anytime, anywhere. With MedB, you can skip the queues, save time, and take full control of your healthcare journey through a simple, secure, and user-friendly experience.
@@ -18,3 +19,4 @@ The MedB Flutter App is a cross-platform mobile solution (iOS & Android) designe
 
 # Tech Stack
 Flutter, Dart | State Management: Bloc / Cubit | Networking: Dio (with interceptors) | Storage: flutter_secure_storage | UI/UX: Figma designs, Lottie animations for delightful micro-interactions | Architecture: Clean Architecture + SOLID Principles | API: RESTful MedB API
+
